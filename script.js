@@ -476,7 +476,7 @@ window.sendEstimateWhatsApp = function() {
   const est = window.lastCalculatedEstimate;
   if (!est) return;
   const msg = `*Namaskar Chhaganlal Dayaljee Jewellers (Sakchi Gaddi)*%0A%0AI have calculated an estimate for custom jewellery:%0A- Purity: ${est.karatLabel}%0A- Net Weight: ${est.weight}g%0A- Metal Base: ${formatINR(est.base)}%0A- Making Charges: ${formatINR(est.making)}%0A- *Total Estimated Lekha:* ${formatINR(est.grand)}%0A%0APlease let me know your showroom availability for consultation.`;
-  window.open(`https://wa.me/919835112345?text=${msg}`, '_blank');
+  window.open(`https://wa.me/919234662688?text=${msg}`, '_blank');
 };
 
 // --------------------------------------------------------------------------
@@ -558,7 +558,7 @@ function updateBagUI() {
   if (drawerWaLink) {
     const itemsSummary = bahiBag.map(i => `• ${i.name} (${i.serial}) - ${i.netWeight}g [${formatINR(i.price)}]`).join('%0A');
     const msg = `*Namaskar Chhaganlal Dayaljee Jewellers (Sakchi Gaddi)*%0A%0AI would like to inspect the following items from the Bahi-Khata ledger:%0A${itemsSummary}%0A%0A*Total Weight:* ${formatNum(totalWeight)}g%0A*Estimated Total:* ${formatINR(totalPrice)}%0A%0APlease confirm if these pieces are ready for preview at Sakchi showroom.`;
-    drawerWaLink.href = `https://wa.me/919835112345?text=${msg}`;
+    drawerWaLink.href = `https://wa.me/919234662688?text=${msg}`;
   }
 }
 
@@ -641,7 +641,7 @@ window.openSpecimenModal = function(id) {
 
   if (waBtn) {
     const msg = `*Namaskar Chhaganlal Dayaljee Jewellers (Sakchi Gaddi)*%0A%0AI would like to inspect specimen: *${item.name}* (${item.serial}).%0APurity: ${item.karat}%0AWeight: ${item.netWeight}g%0APrice: ${formatINR(item.price)}%0A%0APlease confirm appointment timing.`;
-    waBtn.href = `https://wa.me/919835112345?text=${msg}`;
+    waBtn.href = `https://wa.me/919234662688?text=${msg}`;
   }
 
   if (modal) modal.classList.add('open');
