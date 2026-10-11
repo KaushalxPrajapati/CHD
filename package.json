@@ -1,0 +1,21 @@
+{
+  "name": "chd",
+  "version": "1.0.0",
+  "description": "The Heritage Bahi-Khata — Client Prototype & Demo for Chhaganlal Dayaljee Jewellers (Sakchi, Jamshedpur • Est. 1918)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "chd",
+    "jewellery",
+    "bahi-khata",
+    "kundan",
+    "polki",
+    "temple-jewellery",
+    "bis-hallmark"
+  ],
+  "author": "Kaushal Prajapati",
+  "license": "MIT"
+}

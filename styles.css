@@ -1,0 +1,2258 @@
+/* ==========================================================================
+   CHHAGANLAL DAYALJEE JEWELLERS — SAKCHI, JAMSHEDPUR
+   DESIGN SYSTEM: HERITAGE BAHI-KHATA (TRADITIONAL ACCOUNTING REGISTER)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties / Design Tokens (from DESIGN.md)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Material Colors: Cloth-bound Maroon, Antique Foil Gold & Sindoor Ink */
+  --color-primary: #3e050c;
+  --color-primary-container: #5a1a1f;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #da7f81;
+  --color-primary-fixed: #ffdad9;
+  
+  --color-secondary: #795905;
+  --color-secondary-gold: #c9a24d;
+  --color-secondary-container: #fdd177;
+  --color-on-secondary-container: #775804;
+  --color-secondary-fixed: #ffdf9f;
+  --color-secondary-fixed-dim: #ebc168;
+
+  --color-tertiary: #410006;
+  --color-tertiary-container: #69000e;
+  --color-stamp-red: #b3262e;
+  --color-stamp-red-soft: #f8d7da;
+
+  /* Parchment Surfaces & Inks */
+  --color-surface: #fff9ee;
+  --color-surface-dim: #e1d9c7;
+  --color-surface-bright: #fff9ee;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #fbf3e0;
+  --color-surface-container: #f5edda;
+  --color-surface-container-high: #f0e8d5;
+  --color-surface-container-highest: #eae2cf;
+  --color-surface-foliomiddle: #ebdfc7;
+
+  --color-wood-desk: #1f1b15;
+  --color-wood-desk-deep: #14110d;
+
+  --color-on-surface: #1f1b10;
+  --color-on-surface-variant: #544342;
+  --color-ink-blueblack: #1b2440;
+  --color-ink-sepia: #2a2421;
+  --color-ink-faded: #8a7d70;
+
+  --color-ruled-blue: #c8d6e5;
+  --color-ruled-sepia: #e4d7c0;
+
+  /* Typography Fonts */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'EB Garamond', Garamond, Georgia, serif;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+
+  /* Shadows & Elevations */
+  --shadow-ledger-folio: 0 16px 40px rgba(31, 27, 21, 0.35), 0 2px 8px rgba(31, 27, 21, 0.15);
+  --shadow-pin: 0 4px 10px rgba(42, 36, 33, 0.22);
+  --shadow-wax: inset 0 2px 3px rgba(255, 255, 255, 0.35), 0 6px 14px rgba(62, 5, 12, 0.5);
+  --shadow-brass: inset 0 1px 2px rgba(255, 255, 255, 0.6), 0 2px 5px rgba(0, 0, 0, 0.3);
+
+  /* Transitions */
+  --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Global Styles
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--color-wood-desk);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-on-surface);
+  background-color: var(--color-wood-desk);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(90, 26, 31, 0.18) 0%, transparent 60%),
+    linear-gradient(to right, rgba(0,0,0,0.6) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.6) 100%),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 2px, transparent 2px, transparent 6px);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #181410;
+}
+::-webkit-scrollbar-thumb {
+  background: #5a1a1f;
+  border-radius: 4px;
+  border: 1px solid var(--color-secondary-gold);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-stamp-red);
+}
+
+/* Selection Color */
+::selection {
+  background: #5a1a1f;
+  color: #ffdf9f;
+}
+
+/* --------------------------------------------------------------------------
+   3. Typography Utility Classes
+   -------------------------------------------------------------------------- */
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+.font-mono { font-family: var(--font-mono); }
+
+h1, h2, h3, h4, .masthead-text {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* --------------------------------------------------------------------------
+   4. Top Fixed Header & Bullion Rate Bar
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: var(--color-primary-container);
+  border-bottom: 2px solid var(--color-secondary-gold);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  color: var(--color-secondary-fixed);
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.sacred-shree {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-secondary-fixed);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+
+.brand-divider {
+  width: 1.5px;
+  height: 1.5rem;
+  background-color: rgba(255, 223, 159, 0.35);
+}
+
+.brand-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff9ee;
+  line-height: 1.15;
+}
+
+.brand-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-secondary-fixed-dim);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hallmark-pill {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid rgba(201, 162, 77, 0.5);
+  background: rgba(30, 5, 10, 0.4);
+  color: var(--color-secondary-fixed);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.action-btn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(201, 162, 77, 0.15);
+  color: var(--color-secondary-fixed);
+  border: 1px solid var(--color-secondary-gold);
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition-smooth);
+}
+.action-btn:hover {
+  background: var(--color-secondary-gold);
+  color: var(--color-primary);
+}
+
+.bag-btn {
+  background: #b3262e;
+  border-color: #ff9999;
+  color: #ffffff;
+  position: relative;
+  font-weight: 700;
+}
+.bag-btn:hover {
+  background: #d42e38;
+  color: #ffffff;
+}
+
+.bag-badge {
+  background: #ffffff;
+  color: #b3262e;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 99px;
+  margin-left: 0.2rem;
+}
+
+/* Aaj Ka Bhav Ticker Bar */
+.bhav-ticker-bar {
+  background: #ede2cb;
+  border-top: 1px solid rgba(62, 5, 12, 0.2);
+  border-bottom: 1px solid rgba(62, 5, 12, 0.15);
+  padding: 0.35rem 1.5rem;
+  color: var(--color-ink-blueblack);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.bhav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.bhav-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+}
+
+.bhav-rates {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.rate-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.rate-item strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+.rate-dot {
+  color: var(--color-secondary);
+  font-size: 0.7rem;
+}
+
+.bhav-note {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.78rem;
+  color: var(--color-stamp-red);
+}
+
+.unit-toggle-btn {
+  background: transparent;
+  border: 1px dashed var(--color-stamp-red);
+  color: var(--color-stamp-red);
+  padding: 0.15rem 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: var(--transition-smooth);
+}
+.unit-toggle-btn:hover {
+  background: var(--color-stamp-red);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   5. Staggered Ledger Index Tabs (Right Edge Navigation)
+   -------------------------------------------------------------------------- */
+.ledger-index-tabs {
+  position: fixed;
+  right: 0;
+  top: 7.2rem;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  user-select: none;
+}
+
+.index-tab {
+  display: block;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  padding: 0.45rem 0.9rem 0.45rem 1.1rem;
+  background: #e1d3b6;
+  color: var(--color-on-surface);
+  border-left: 2px solid rgba(27, 36, 64, 0.3);
+  border-top: 1px solid rgba(27, 36, 64, 0.2);
+  border-bottom: 1px solid rgba(27, 36, 64, 0.2);
+  border-radius: 4px 0 0 4px;
+  transform: translateX(6px);
+  box-shadow: -3px 3px 6px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.index-tab:hover {
+  transform: translateX(0);
+  background: #ebdfc7;
+  color: var(--color-primary);
+}
+
+.index-tab.active {
+  transform: translateX(0);
+  background: #ebdfc7;
+  color: var(--color-primary);
+  border-left: 3px solid var(--color-secondary-gold);
+  border-top: 1px solid var(--color-secondary-gold);
+  border-bottom: 1px solid var(--color-secondary-gold);
+  box-shadow: -5px 3px 10px rgba(0, 0, 0, 0.35);
+  font-weight: 700;
+}
+
+.index-tab.tab-bag {
+  background: #f4ebda;
+  color: var(--color-stamp-red);
+  border-left: 3px solid var(--color-stamp-red);
+}
+
+.index-tab .grommet {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-secondary-gold);
+  border: 1px solid #795905;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+
+/* --------------------------------------------------------------------------
+   6. Main Content Area & Folio Book Structure
+   -------------------------------------------------------------------------- */
+.page-wrapper {
+  padding-top: 6.8rem;
+  padding-right: 3.5rem;
+  padding-bottom: 4rem;
+  min-height: 100vh;
+}
+
+.folio-container {
+  max-width: 1360px;
+  margin: 1.5rem auto;
+  padding: 0 1.25rem;
+}
+
+/* The Skeuomorphic Ledger Folio Register */
+.bahi-khata-register {
+  position: relative;
+  background-color: #f4ebda;
+  border-radius: 2px;
+  box-shadow: var(--shadow-ledger-folio);
+  overflow: hidden;
+  border: 1px solid #d9cbb4;
+}
+
+/* Texture & Ruling Overlay */
+.bahi-khata-register::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to bottom, transparent 23px, #c8d6e5 24px);
+  background-size: 100% 24px;
+  opacity: 0.38;
+  z-index: 1;
+}
+
+/* Red Margin Guides */
+.ledger-red-margin {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 3.5rem;
+  width: 5px;
+  display: flex;
+  gap: 2px;
+  pointer-events: none;
+  z-index: 2;
+}
+.ledger-red-margin .rule-line {
+  width: 1.5px;
+  height: 100%;
+  background-color: var(--color-stamp-red);
+  opacity: 0.75;
+}
+
+/* Center Crease Shadow (Bi-fold Book Valley) */
+.book-spine-crease {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3.5rem;
+  background: linear-gradient(to right, transparent, rgba(42, 36, 33, 0.12), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Brass Corner Plates */
+.brass-corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fdd177 30%, #c9a24d 70%, #795905 100%);
+  box-shadow: var(--shadow-brass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 10;
+}
+.brass-corner::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #5a1a1f;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
+}
+.brass-corner.top-left { top: 10px; left: 10px; }
+.brass-corner.top-right { top: 10px; right: 10px; }
+.brass-corner.bottom-left { bottom: 10px; left: 10px; }
+.brass-corner.bottom-right { bottom: 10px; right: 10px; }
+
+/* Folio Content Layer */
+.folio-content {
+  position: relative;
+  z-index: 3;
+  padding: 2.5rem 2rem 3rem 4.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   7. Top Inscription & Sacred Masthead
+   -------------------------------------------------------------------------- */
+.sacred-header {
+  border-bottom: 2px dashed rgba(179, 38, 46, 0.35);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2.2rem;
+  position: relative;
+}
+
+.sacred-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.bis-stamp-box {
+  border: 2px dashed var(--color-stamp-red);
+  color: var(--color-stamp-red);
+  padding: 0.65rem 0.9rem;
+  transform: rotate(-5deg);
+  user-select: none;
+  opacity: 0.95;
+  text-align: center;
+  background: rgba(248, 215, 218, 0.4);
+  box-shadow: 0 2px 6px rgba(179, 38, 46, 0.15);
+  transition: transform 0.3s ease;
+  width: 145px;
+  flex-shrink: 0;
+}
+.bis-stamp-box:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+.bis-stamp-box .stamp-title {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  display: block;
+}
+.bis-stamp-box .stamp-mid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin: 0.15rem 0;
+}
+.bis-stamp-box .stamp-code {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 900;
+}
+.bis-stamp-box .stamp-sub {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.sacred-center {
+  flex: 1;
+  text-align: center;
+}
+
+.sacred-invocation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--color-stamp-red);
+  font-family: var(--font-display);
+}
+.sacred-invocation .swastika {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.sacred-invocation .invocation-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.sacred-main-heading {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-style: italic;
+  color: var(--color-primary);
+  margin-top: 0.4rem;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.sacred-subhead {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--color-ink-blueblack);
+  margin-top: 0.4rem;
+}
+
+/* Wax Seal Badge */
+.wax-seal-badge {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #7a1e24 0%, #5a1a1f 55%, #300609 100%);
+  box-shadow: var(--shadow-wax);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(4deg);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.wax-seal-badge:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+.wax-seal-inner {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 223, 159, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--color-secondary-fixed);
+  padding: 0.2rem;
+}
+.wax-seal-inner .seal-org {
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.wax-seal-inner .seal-val {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1;
+}
+.wax-seal-inner .seal-sub {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   8. Showroom Tray Hero Section (Gaddi Display Tray #04)
+   -------------------------------------------------------------------------- */
+.hero-tray-section {
+  position: relative;
+  background-color: var(--color-surface-foliomiddle);
+  padding: 1.5rem;
+  box-shadow: 0 16px 36px rgba(42, 36, 33, 0.25);
+  margin-bottom: 3rem;
+  border: 1px solid #dcc8a4;
+}
+
+.tray-brass-brackets {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.tray-brass-bracket {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: var(--color-secondary);
+  opacity: 0.85;
+}
+.bracket-tl { top: 0; left: 0; border-top: 3.5px solid; border-left: 3.5px solid; }
+.bracket-tr { top: 0; right: 0; border-top: 3.5px solid; border-right: 3.5px solid; }
+.bracket-bl { bottom: 0; left: 0; border-bottom: 3.5px solid; border-left: 3.5px solid; }
+.bracket-br { bottom: 0; right: 0; border-bottom: 3.5px solid; border-right: 3.5px solid; }
+
+.tray-media-frame {
+  position: relative;
+  overflow: hidden;
+  background-color: #1a1614;
+  padding: 0.65rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.tray-image {
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tray-media-frame:hover .tray-image {
+  transform: scale(1.02);
+}
+
+/* Interactive Overlay Pins on Tray Image */
+.tray-pin-tag {
+  position: absolute;
+  background: rgba(255, 249, 238, 0.94);
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--color-ink-blueblack);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  border-left: 3px solid var(--color-stamp-red);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.tray-pin-tag:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  border-left-color: var(--color-secondary-gold);
+}
+.tray-pin-tag.pin-choker {
+  bottom: 1.5rem;
+  left: 1.5rem;
+}
+.tray-pin-tag.pin-jhumkas {
+  top: 1.5rem;
+  right: 1.5rem;
+  border-left-color: var(--color-secondary);
+}
+
+.tray-info-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+  align-items: stretch;
+}
+
+.tray-spec-card {
+  background: #dcc8a4;
+  padding: 1.25rem 1.5rem;
+  border-left: 4px solid #8b6528;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.spec-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--color-on-surface);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4rem;
+}
+
+.spec-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+.spec-desc {
+  font-size: 0.95rem;
+  color: var(--color-on-surface-variant);
+  margin-top: 0.4rem;
+}
+
+.spec-bottom-tally {
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(84, 67, 66, 0.25);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-ink-blueblack);
+}
+
+.tray-cta-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.historical-quote-slip {
+  background: #fbf5e7;
+  padding: 1rem 1.2rem;
+  border-left: 3px solid var(--color-ink-blueblack);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--color-ink-blueblack);
+  line-height: 1.5;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+}
+.quote-author {
+  text-align: right;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-top: 0.35rem;
+}
+
+.btn-gaddi-inspect {
+  background-color: var(--color-primary-container);
+  color: var(--color-secondary-fixed);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid rgba(255, 223, 159, 0.4);
+  box-shadow: 0 4px 12px rgba(90, 26, 31, 0.35);
+  cursor: pointer;
+  text-align: center;
+  transition: var(--transition-smooth);
+}
+.btn-gaddi-inspect:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   9. Bahi-Khata Folio Register Table (The Inward Ledger)
+   -------------------------------------------------------------------------- */
+.ledger-section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--color-stamp-red);
+  padding-bottom: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.heading-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-stamp-red);
+  display: block;
+}
+
+.heading-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-top: 0.15rem;
+}
+
+.heading-note {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--color-on-surface-variant);
+}
+
+/* Filter & Search Bar for Ledger */
+.ledger-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: #ebdfc7;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #d9cbb4;
+}
+
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.filter-btn {
+  background: #fbf5e7;
+  border: 1px solid rgba(27, 36, 64, 0.25);
+  color: var(--color-on-surface);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.35rem 0.65rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--color-primary-container);
+  color: var(--color-secondary-fixed);
+  border-color: var(--color-primary);
+}
+
+.ledger-search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #fff9ee;
+  border-bottom: 1.5px solid var(--color-ink-blueblack);
+  padding: 0.25rem 0.5rem;
+}
+.ledger-search-input {
+  border: none;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-on-surface);
+  outline: none;
+  width: 200px;
+}
+.ledger-search-input::placeholder {
+  color: var(--color-ink-faded);
+  font-style: italic;
+}
+
+/* The Table */
+.ledger-table-container {
+  overflow-x: auto;
+  border: 1px solid #d9cbb4;
+  background: #f4ebda;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.ledger-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 900px;
+}
+
+.ledger-table thead tr {
+  background-color: #e9dcbe;
+  border-bottom: 2px solid var(--color-stamp-red);
+}
+
+.ledger-table th {
+  padding: 0.85rem 0.75rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--color-primary);
+  font-weight: 700;
+  vertical-align: bottom;
+}
+.ledger-table th .sub-th {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: normal;
+  color: var(--color-on-surface-variant);
+  margin-top: 0.15rem;
+}
+
+.ledger-table tbody tr {
+  border-bottom: 1px solid rgba(200, 214, 229, 0.8);
+  transition: background-color 0.15s ease;
+}
+.ledger-table tbody tr:hover {
+  background-color: #fff7e6;
+}
+
+.ledger-table td {
+  padding: 1rem 0.75rem;
+  vertical-align: top;
+  font-size: 0.95rem;
+}
+
+/* Specific Columns */
+.col-entry-no {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-ink-blueblack);
+}
+
+.specimen-thumb-wrap {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  background-color: #e1d3b6;
+  padding: 3px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  transform: rotate(-1deg);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+.specimen-thumb-wrap:hover {
+  transform: rotate(0deg) scale(1.08);
+}
+.paperclip-clip {
+  position: absolute;
+  top: -6px;
+  left: 6px;
+  width: 8px;
+  height: 18px;
+  border: 1.5px solid #8e887d;
+  border-radius: 6px;
+  background: transparent;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+  z-index: 10;
+}
+.specimen-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.specimen-info-cell .item-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.25;
+}
+.specimen-info-cell .item-desc {
+  font-size: 0.88rem;
+  color: var(--color-on-surface-variant);
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
+.specimen-info-cell .hallmark-tag {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-stamp-red);
+  background: var(--color-stamp-red-soft);
+  padding: 0.15rem 0.4rem;
+}
+
+.col-weight-specs {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--color-ink-blueblack);
+}
+.col-weight-specs .purity-label {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.col-weight-specs .gross-sub {
+  font-size: 0.72rem;
+  color: var(--color-on-surface-variant);
+}
+
+.col-making {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-on-surface-variant);
+}
+
+.col-price {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-ink-blueblack);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.btn-add-bahi {
+  background-color: var(--color-primary-container);
+  color: var(--color-secondary-fixed);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid rgba(255, 223, 159, 0.4);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  white-space: nowrap;
+}
+.btn-add-bahi:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+.btn-add-bahi.added {
+  background-color: #274d2b;
+  color: #e5fbe5;
+  border-color: #55a85c;
+}
+
+/* Footer of the Table */
+.ledger-table tfoot tr {
+  border-top: 4px double var(--color-stamp-red);
+  background-color: #ebe0c7;
+  color: var(--color-ink-blueblack);
+}
+.ledger-table tfoot td {
+  padding: 0.85rem 0.75rem;
+}
+.tfoot-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.tfoot-total {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  text-align: right;
+  white-space: nowrap;
+}
+.tfoot-sub {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--color-on-surface-variant);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   10. Collections Gallery (Virasat & Sangrah Folios)
+   -------------------------------------------------------------------------- */
+.gallery-section {
+  margin: 3.5rem 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.folio-specimen-card {
+  background: var(--color-surface-container-low);
+  border: 1px solid #d9cbb4;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(42, 36, 33, 0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.folio-specimen-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(42, 36, 33, 0.2);
+}
+
+.card-top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+.card-entry-code {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+.card-collection-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--color-surface-container-highest);
+  color: var(--color-primary);
+  padding: 0.2rem 0.5rem;
+}
+
+.card-photo-mount {
+  position: relative;
+  background: var(--color-surface-container-highest);
+  padding: 0.5rem;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.card-photo {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform 0.5s ease;
+}
+.folio-specimen-card:hover .card-photo {
+  transform: scale(1.03);
+}
+
+.card-purity-tag {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background: rgba(62, 5, 12, 0.94);
+  color: var(--color-secondary-fixed);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.75rem;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+.card-specimen-title {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+.card-specimen-desc {
+  font-size: 0.95rem;
+  color: var(--color-on-surface-variant);
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+.card-spec-table {
+  background: var(--color-surface-container);
+  padding: 0.85rem 1rem;
+  margin-top: 1.15rem;
+  border-left: 3px solid var(--color-secondary-gold);
+}
+.card-spec-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.2rem 0;
+  color: var(--color-on-surface);
+}
+.card-spec-row .spec-label {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.card-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(84, 67, 66, 0.25);
+}
+
+.btn-inspect-specimen {
+  background: var(--color-primary);
+  color: var(--color-secondary-fixed);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid rgba(255, 223, 159, 0.3);
+  box-shadow: 0 3px 8px rgba(62, 5, 12, 0.25);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition-smooth);
+}
+.btn-inspect-specimen:hover {
+  background: var(--color-primary-container);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.card-ref-code {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-style: italic;
+  color: var(--color-on-surface-variant);
+}
+
+/* --------------------------------------------------------------------------
+   11. Interactive Gold Rate Calculator & Traditional Estimate Slip
+   -------------------------------------------------------------------------- */
+.calculator-section {
+  margin: 3.5rem 0;
+  background: #ede2cb;
+  border: 1px solid #d9cbb4;
+  padding: 2rem;
+  position: relative;
+  box-shadow: 0 12px 32px rgba(42, 36, 33, 0.16);
+}
+
+.calculator-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 1.5rem;
+  align-items: start;
+}
+
+.calc-form-card {
+  background: #fbf5e7;
+  padding: 1.5rem;
+  border: 1px solid #dcc8a4;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+.form-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 0.4rem;
+}
+
+.karat-selector-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.karat-btn {
+  background: #f4ebda;
+  border: 1px solid rgba(27, 36, 64, 0.3);
+  padding: 0.65rem 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-on-surface);
+  transition: var(--transition-smooth);
+}
+.karat-btn.active {
+  background: var(--color-primary-container);
+  color: var(--color-secondary-fixed);
+  border-color: var(--color-primary);
+  font-weight: 700;
+}
+.karat-btn .purity-sub {
+  display: block;
+  font-size: 0.65rem;
+  opacity: 0.85;
+}
+
+.input-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.range-slider {
+  flex: 1;
+  accent-color: var(--color-stamp-red);
+  cursor: pointer;
+}
+.number-input-field {
+  width: 90px;
+  background: #fff;
+  border: 1px solid rgba(27, 36, 64, 0.4);
+  padding: 0.45rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-ink-blueblack);
+  text-align: right;
+  outline: none;
+}
+
+/* The Skeuomorphic Estimate Slip (Pakka Parcha) */
+.estimate-parcha {
+  background: #fffdf7;
+  padding: 1.8rem;
+  border: 2px dashed rgba(179, 38, 46, 0.4);
+  box-shadow: 0 8px 24px rgba(42, 36, 33, 0.15);
+  transform: rotate(-0.75deg);
+  position: relative;
+}
+
+.parcha-pin {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fdd177 30%, #b38827 70%, #684803 100%);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+.parcha-header {
+  text-align: center;
+  border-bottom: 1.5px solid var(--color-stamp-red);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+.parcha-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+.parcha-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  letter-spacing: 0.1em;
+}
+
+.parcha-meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-on-surface-variant);
+  margin-bottom: 0.75rem;
+}
+
+.parcha-line-items {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+.parcha-line-items td {
+  padding: 0.45rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-ink-blueblack);
+}
+.parcha-line-items tr:not(:last-child) {
+  border-bottom: 1px dotted rgba(27, 36, 64, 0.2);
+}
+.parcha-line-items .item-value {
+  text-align: right;
+  font-weight: 700;
+}
+
+.parcha-grand-total {
+  border-top: 3px double var(--color-stamp-red);
+  border-bottom: 3px double var(--color-stamp-red);
+  padding: 0.75rem 0;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.grand-total-label {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.grand-total-amt {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--color-stamp-red);
+}
+
+.parcha-stamp-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 1.25rem;
+}
+.parcha-rubber-stamp {
+  border: 1.5px solid var(--color-stamp-red);
+  color: var(--color-stamp-red);
+  padding: 0.35rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  transform: rotate(3deg);
+  opacity: 0.9;
+  letter-spacing: 0.08em;
+}
+
+.parcha-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+.btn-parcha-action {
+  flex: 1;
+  background: var(--color-primary-container);
+  color: var(--color-secondary-fixed);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  padding: 0.6rem 0.5rem;
+  border: 1px solid rgba(255, 223, 159, 0.3);
+  cursor: pointer;
+  text-align: center;
+  transition: var(--transition-smooth);
+}
+.btn-parcha-action:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn-parcha-whatsapp {
+  background: #1b6334;
+  border-color: #27ae60;
+  color: #fff;
+}
+.btn-parcha-whatsapp:hover {
+  background: #144e28;
+}
+
+/* --------------------------------------------------------------------------
+   12. Three Generations of Trust (Heritage Timeline)
+   -------------------------------------------------------------------------- */
+.heritage-section {
+  margin: 3.5rem 0;
+  padding: 2.5rem 2rem;
+  background: #eee2cb;
+  box-shadow: 0 12px 32px rgba(42, 36, 33, 0.16);
+  position: relative;
+}
+
+/* Thread Stitching Simulation */
+.timeline-thread-stitch {
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  pointer-events: none;
+}
+.thread-cross {
+  width: 24px;
+  height: 4px;
+  background: #8b0000;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+.thread-cross:nth-child(even) { transform: rotate(35deg); }
+.thread-cross:nth-child(odd) { transform: rotate(-35deg); }
+
+.heritage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+  margin-top: 2rem;
+}
+
+.generation-card {
+  background: #f7f0e0;
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(42, 36, 33, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 4px solid var(--color-stamp-red);
+  position: relative;
+}
+.generation-card.gen-2 { border-top-color: var(--color-secondary); }
+.generation-card.gen-3 { border-top-color: var(--color-primary-container); }
+
+.gen-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(27, 36, 64, 0.15);
+  margin-bottom: 0.85rem;
+}
+.gen-year {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.gen-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--color-on-surface-variant);
+  letter-spacing: 0.08em;
+}
+
+.gen-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+
+.gen-narrative {
+  font-size: 0.95rem;
+  color: var(--color-on-surface-variant);
+  margin-top: 0.75rem;
+  line-height: 1.6;
+}
+
+.signature-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(27, 36, 64, 0.2);
+  text-align: center;
+}
+.sig-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-on-surface-variant);
+  margin-bottom: 0.25rem;
+}
+.sig-script {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--color-ink-blueblack);
+}
+
+/* Pinned Patron Slips */
+.patron-slips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.patron-slip {
+  background: #f9f3e5;
+  padding: 1.5rem;
+  border-top: 2px solid rgba(27, 36, 64, 0.2);
+  box-shadow: var(--shadow-pin);
+  position: relative;
+}
+.patron-slip.slip-1 { transform: rotate(-1deg); }
+.patron-slip.slip-2 { transform: rotate(1deg); }
+
+.brass-drawing-pin {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffd177, #c9a24d 60%, #5a3805 100%);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.35);
+}
+
+.slip-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-ink-blueblack);
+  line-height: 1.6;
+}
+
+.slip-meta {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(27, 36, 64, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.patron-name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.patron-loc {
+  font-size: 0.78rem;
+  color: var(--color-on-surface-variant);
+}
+.slip-verified-badge {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-stamp-red);
+}
+
+/* --------------------------------------------------------------------------
+   13. BIS Hallmark & HUID Verifier Section
+   -------------------------------------------------------------------------- */
+.verifier-section {
+  margin: 3.5rem 0;
+  background: #fbf5e7;
+  border: 1px solid #d9cbb4;
+  padding: 2.2rem;
+  box-shadow: 0 10px 28px rgba(42, 36, 33, 0.12);
+}
+
+.verifier-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 1.5rem;
+  align-items: center;
+}
+
+.hallmark-anatomy-card {
+  background: #f4ebda;
+  padding: 1.5rem;
+  border: 1px solid #dcc8a4;
+}
+
+.anatomy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.anatomy-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+.anatomy-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--color-primary-container);
+  color: var(--color-secondary-fixed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.anatomy-title {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.anatomy-desc {
+  font-size: 0.85rem;
+  color: var(--color-on-surface-variant);
+  margin-top: 0.15rem;
+}
+
+.huid-tool-card {
+  background: #fff;
+  padding: 1.5rem;
+  border: 1.5px dashed var(--color-stamp-red);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.huid-input-wrap {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+.huid-input {
+  flex: 1;
+  padding: 0.65rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1px solid rgba(27, 36, 64, 0.4);
+  outline: none;
+}
+.huid-input:focus {
+  border-color: var(--color-primary);
+}
+
+.huid-result-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fbf5e7;
+  border-left: 3px solid #27ae60;
+  font-size: 0.88rem;
+}
+.huid-result-box.error {
+  border-left-color: var(--color-stamp-red);
+}
+
+/* --------------------------------------------------------------------------
+   14. Showroom Visit & Appointment Booking
+   -------------------------------------------------------------------------- */
+.visit-section {
+  margin: 3.5rem 0 1.5rem 0;
+  background: #ebdfc7;
+  border: 1px solid #d9cbb4;
+  padding: 2.2rem;
+  box-shadow: 0 10px 28px rgba(42, 36, 33, 0.12);
+}
+
+.visit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 1.5rem;
+}
+
+.contact-dossier {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.contact-info-block {
+  background: #fbf5e7;
+  padding: 1.25rem;
+  border-left: 4px solid var(--color-primary);
+}
+.contact-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.contact-detail {
+  font-size: 0.95rem;
+  color: var(--color-on-surface-variant);
+  margin-top: 0.35rem;
+  line-height: 1.5;
+}
+
+.booking-form-box {
+  background: #fbf5e7;
+  padding: 1.5rem;
+  border: 1px solid #dcc8a4;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.input-text-standard, .select-standard {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  background: #fff;
+  border: 1px solid rgba(27, 36, 64, 0.3);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-on-surface);
+  outline: none;
+}
+.input-text-standard:focus, .select-standard:focus {
+  border-color: var(--color-primary);
+}
+
+.btn-book-submit {
+  width: 100%;
+  background: var(--color-primary-container);
+  color: var(--color-secondary-fixed);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.85rem;
+  border: 1px solid rgba(255, 223, 159, 0.4);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  margin-top: 0.5rem;
+}
+.btn-book-submit:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   15. Slide-Over Bahi Bag Drawer
+   -------------------------------------------------------------------------- */
+.bahi-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(2px);
+}
+.bahi-drawer-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bahi-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 480px;
+  max-width: 90vw;
+  background: #f4ebda;
+  z-index: 201;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.4);
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid var(--color-secondary-gold);
+}
+.bahi-drawer-overlay.open .bahi-drawer {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  background: var(--color-primary-container);
+  color: var(--color-secondary-fixed);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--color-secondary-gold);
+}
+.drawer-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: #fff9ee;
+}
+.drawer-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-secondary-fixed);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.25rem 1.5rem;
+}
+
+.bag-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bag-item-card {
+  background: #fff;
+  padding: 1rem;
+  border-left: 3px solid var(--color-stamp-red);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  position: relative;
+}
+.bag-item-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.bag-item-specs {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-on-surface-variant);
+  margin-top: 0.25rem;
+}
+.bag-item-price {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-stamp-red);
+  margin-top: 0.4rem;
+}
+.btn-remove-item {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  background: transparent;
+  border: none;
+  color: var(--color-ink-faded);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.btn-remove-item:hover { color: var(--color-stamp-red); }
+
+.bag-empty-notice {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--color-ink-faded);
+  font-style: italic;
+}
+
+.drawer-footer {
+  background: #ebe0c7;
+  padding: 1.25rem 1.5rem;
+  border-top: 2px solid rgba(179, 38, 46, 0.3);
+}
+.drawer-tally-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 0.25rem 0;
+}
+.drawer-grand-total {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  border-top: 2px dashed rgba(27, 36, 64, 0.25);
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.btn-drawer-whatsapp {
+  width: 100%;
+  background: #1b6334;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.75rem;
+  border: 1px solid #27ae60;
+  cursor: pointer;
+  margin-top: 0.85rem;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   16. Specimen Dossier Modal (Quick Inspect)
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 300;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: #f4ebda;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 2px solid var(--color-secondary-gold);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  position: relative;
+  border-radius: 2px;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: transparent;
+  border: none;
+  font-size: 1.75rem;
+  color: var(--color-primary);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.modal-body-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.modal-photo-mount {
+  background: #fff;
+  padding: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.modal-photo-img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+.modal-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* --------------------------------------------------------------------------
+   17. Site Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--color-surface-container-high);
+  border-top: 1px solid rgba(217, 193, 192, 0.4);
+  padding: 2.5rem 1.5rem;
+  margin-top: 3rem;
+  color: var(--color-on-surface);
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-logo-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-secondary-gold);
+  color: var(--color-secondary-gold);
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.footer-copy {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   18. Toast Notifications
+   -------------------------------------------------------------------------- */
+.toast-container {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toast {
+  background: var(--color-primary-container);
+  color: #fff9ee;
+  border-left: 4px solid var(--color-secondary-gold);
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+  animation: slideInToast 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+@keyframes slideInToast {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   19. Responsive Design Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .book-spine-crease { display: none; }
+  .tray-info-grid { grid-template-columns: 1fr; }
+  .calculator-grid { grid-template-columns: 1fr; }
+  .verifier-grid { grid-template-columns: 1fr; }
+  .visit-grid { grid-template-columns: 1fr; }
+  .modal-body-grid { grid-template-columns: 1fr; }
+  .modal-photo-img { height: 280px; }
+}
+
+@media (max-width: 768px) {
+  .page-wrapper {
+    padding-right: 0;
+    padding-top: 8.5rem;
+  }
+  .ledger-index-tabs {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    flex-direction: row;
+    overflow-x: auto;
+    background: #1f1b15;
+    padding: 0.35rem 0.5rem;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+  }
+  .index-tab {
+    border-radius: 0;
+    transform: none;
+    font-size: 0.65rem;
+    padding: 0.35rem 0.55rem;
+    border: none;
+  }
+  .folio-content {
+    padding: 1.5rem 1rem 1.5rem 2.25rem;
+  }
+  .ledger-red-margin {
+    left: 1.2rem;
+  }
+  .sacred-main-heading {
+    font-size: 2rem;
+  }
+  .sacred-row {
+    flex-direction: column;
+    text-align: center;
+  }
+  .bis-stamp-box, .wax-seal-badge {
+    margin: 0 auto;
+  }
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-copy {
+    text-align: center;
+  }
+}
